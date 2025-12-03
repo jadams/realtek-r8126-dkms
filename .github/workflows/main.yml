@@ -13,7 +13,8 @@ jobs:
       - name: Build Debian Package
         uses: jtdor/build-deb-action@v1
         with:
-          args: "-b -rfakeroot -us -uc"
+          buildpackage-opts: -b -rfakeroot -us -uc
+          extra-build-deps: dkms
 
       - name: Upload Debian Package
         uses: actions/upload-artifact@v4

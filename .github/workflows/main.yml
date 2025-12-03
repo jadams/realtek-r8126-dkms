@@ -1,0 +1,22 @@
+name: Build Debian Package
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Debian Package
+        uses: jtdor/build-deb-action@v1 # Example action, others are available
+        with:
+          args: "-b -uc -us" # Example arguments for dpkg-buildpackage
+          # Other inputs might be available depending on the specific action
+
+      - name: Upload Debian Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: debian-package
+          path: "*.deb" # Adjust path based on where
